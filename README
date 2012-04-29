@@ -1,1 +1,3 @@
-TODO!
+Simple particle system written in JavaScript/HTML5.
+
+The particle system is easily initialized, and is drawn on a HTML5 canvas.
