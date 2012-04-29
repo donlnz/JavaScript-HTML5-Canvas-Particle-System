@@ -1,3 +1,3 @@
-Simple particle system written in JavaScript/HTML5.
+Simple particle system written in JavaScript using HTML5 canvas.
 
-The particle system is easily initialized, and is drawn on a HTML5 canvas.
+The particle system is designed to be customizable and easily extandable with new particle shapes, animations and effects
