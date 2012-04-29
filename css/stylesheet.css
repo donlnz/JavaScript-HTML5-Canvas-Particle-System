@@ -1,0 +1,61 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
+body {
+	background-color: #333;
+	color: white;
+	font-family: Arial, "MS Trebuchet", sans-serif;
+	font-size: small;
+}
+
+input {
+	color: white;
+}
+
+#controls {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+
+.controllercontainer {
+	height: 100px;
+}
+
+.controllername {
+	float: left;
+}
+
+.controller {
+	width: 80px;
+	float: right;
+	margin: 5px 5px 5px 10px;
+}
+.clearfloat {
+	clear: both;
+}
+
+.ui-slider .ui-slider-handle  {
+	height: 10px;
+}
+
+.ui-slider {
+	height: 5px;
+}
+
+select {
+	border: 1px solid #FFF;
+	width: 100%;
+	font-size: xx-small;
+	vertical-align: top;
+}
+
+#controls hr {
+	margin: 5px 0px 5px 0px;
+	background-color: white;
+	height: 1px;
+	border: 0px;
+}

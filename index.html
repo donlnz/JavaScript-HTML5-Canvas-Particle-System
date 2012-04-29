@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+		<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/particles.js" ></script>
+		<script type="text/javascript">
+			var ps;
+			window.onload = function () {
+				
+				window.onresize = function (){
+					ps.resize();
+				}
+
+				// Create a new particle system
+				ps = new ParticleSystem('canvas');
+
+				// Initialize particle system
+				ps.particleColor = { r : 50, g : 100, b : 200, a : 1 };
+				ps.particlesPerUpdate = 5;
+				ps.particleSpeed = 10;
+				ps.autoResize = true;
+
+				// Init controls
+				$("#controller-pwidth").slider({ min: 1, max: 150, change: function(event, ui) { ps.particleSize.x = ui.value } });
+				$("#controller-pheight").slider({ min: 1, max: 150, change: function(event, ui) { ps.particleSize.y = ui.value } });
+				$("#controller-pwidth").slider("option", "value", 20);
+				$("#controller-pheight").slider("option", "value", 20);
+
+				updPType();
+				updRType();
+
+				// Start the particle system
+				ps.run();
+			}
+
+			function updPType() {
+				var ptype = document.getElementById("controller-ptype").value;
+				switch (ptype) {
+					case "Square":
+						ps.particleRenderer = new SquareParticleRenderer();
+						document.getElementById("controller-pheight").style.visibility = "visible";
+						break;
+					case "Round":
+						ps.particleRenderer = new RoundParticleRenderer();
+						document.getElementById("controller-pheight").style.visibility = "hidden";
+						$("#controller-pheight").slider("option", "value", 20);
+						break;
+				}
+			}
+
+			function updRType() {
+				var rtype = document.getElementById("controller-rtype").value;
+				switch (rtype) {
+					case "Default":
+						ps.particleAnimator = new DefaultParticleAnimator();
+						break;
+					case "Fancy":
+						ps.particleAnimator = new FancyParticleAnimator();
+						break;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="controls">
+			<div id="controllercontainer">
+				<div class="controllername">{particle}.renderer</div>
+				<select class="controller" id="controller-ptype" onchange="updPType()">
+					<option>Square</option>
+					<option>Round</option>
+				</select>
+				<div class="clearfloat"></div>
+			</div>
+
+			<div id="controllercontainer">
+				<div class="controllername">{particle}.animator</div>
+				<select class="controller" id="controller-rtype" onchange="updRType()">
+					<option>Default</option>
+					<option>Fancy</option>
+				</select>
+				<div class="clearfloat"></div>
+			</div>
+
+			<div id="controllercontainer">
+				<div class="controllername">{particle}.width</div>
+				<div class="controller" id="controller-pwidth"></div>
+				<div class="clearfloat"></div>
+			</div>
+
+			<div id="controllercontainer">
+				<div class="controllername">{particle}.height</div>
+				<div class="controller" id="controller-pheight"></div>
+				<div class="clearfloat"></div>
+			</div>
+		</div>
+		<canvas id="canvas"></canvas>
+		<script type="text/javascript">
+			canvas.onmousemove = function(e) {
+				if (false)
+					ps.particleOrigin = getCanvasPos(e, canvas);
+			}
+		</script>
+	</body>
+</html>
